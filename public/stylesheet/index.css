@@ -824,6 +824,9 @@ body{
 
 }
 
+.user-row {
+    justify-content: flex-end;
+}
 
 .visitor-count-card {
     margin: 15px 20px;

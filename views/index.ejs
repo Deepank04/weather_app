@@ -294,49 +294,79 @@ src="https://openweathermap.org/img/wn/<%= item.weather[0].icon %>@2x.png"
 
 
 <!-- AI ASSISTANT -->
+<!-- AI ASSISTANT -->
 
-<button class="ai-assistant-btn" onclick="openAIChat()">
+<button
+    class="ai-assistant-btn"
+    onclick="openAIChat()"
+>
     🤖
 </button>
 
 
 <!-- AI CHAT BOX -->
 
-<div class="ai-chat-box" id="aiChatBox">
+<div
+    class="ai-chat-box"
+    id="aiChatBox"
+>
+
+
+    <!-- AI CHAT HEADER -->
 
     <div class="ai-chat-header">
 
-        <h3>🤖 Weather AI</h3>
+        <h3>
+            🤖 Weather AI
+        </h3>
 
-        <button onclick="closeAIChat()">×</button>
+        <button
+            onclick="closeAIChat()"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <!-- CHAT MESSAGES -->
+
+    <div
+        class="ai-chat-body"
+        id="aiChatBody"
+    >
+
+
+        <!-- AI MESSAGE -->
+
+        <div class="message-row ai-row">
+
+            <div class="bot-avatar">
+                🤖
+            </div>
+
+            <div class="ai-message">
+
+                Hi 👋
+                <br>
+
+                I'm your weather assistant.
+                <br>
+
+                Ask me anything about the weather.
+
+            </div>
+
+        </div>
+
+
+        <!-- USER MESSAGE WILL BE ADDED HERE -->
+
 
     </div>
 
 
-    <!-- MESSAGES -->
-<div class="ai-chat-body" id="aiChatBody">
-
-    <!-- AI MESSAGE -->
-
-    <div class="message-row ai-row">
-
-        <div class="bot-avatar">
-            🤖
-        </div>
-
-        <div class="ai-message">
-            Hi 👋
-            <br>
-            I'm your weather assistant.
-            <br>
-            Ask me anything about the weather.
-        </div>
-
-    </div>
-
-</div>
-
-    <!-- INPUT -->
+    <!-- CHAT INPUT -->
 
     <div class="ai-chat-input">
 
@@ -344,13 +374,18 @@ src="https://openweathermap.org/img/wn/<%= item.weather[0].icon %>@2x.png"
             type="text"
             id="aiInput"
             placeholder="Ask about weather..."
+            autocomplete="off"
         >
 
-        <button onclick="sendAIMessage()">
+        <button
+            type="button"
+            onclick="sendAIMessage()"
+        >
             ➤
         </button>
 
     </div>
+
 
 </div>
 
