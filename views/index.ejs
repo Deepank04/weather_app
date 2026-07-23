@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/stylesheet/index.css">
+
+<title>Weather App</title>
+
+</head>
+
+
+
+<body>
+
+
+<div class="phone">
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h2>🌤 Weather</h2>
+
+</div>
+
+<!-- VISITOR COUNT -->
+
+<div class="visitor-count-card">
+
+    <div class="visitor-icon">
+        👥
+    </div>
+
+    <div class="visitor-info">
+
+        <p>App Visitors</p>
+
+        <h2>
+            <%= visitorCount || 0 %>
+        </h2>
+
+    </div>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<form action="/visit/weather" method="post" class="search-box">
+
+    <input 
+        type="text"
+        name="city"
+        placeholder="Search city"
+        required
+    >
+
+    <button>
+        🔍
+    </button>
+
+</form>
+
+
+
+<!-- LOCATION -->
+
+<h2 class="location">
+
+📍 <%= city || "Search City" %>
+
+</h2>
+
+
+<p class="date">
+<%= new Date().toDateString() %>
+</p>
+
+
+
+
+<!-- CURRENT WEATHER -->
+
+<div class="weather-card">
+
+
+<img 
+src="https://openweathermap.org/img/wn/<%= forecast?.[0]?.weather[0].icon || '01d' %>@2x.png"
+>
+
+
+<h1 class="temp">
+
+<%= temperature || "--" %>°
+
+</h1>
+
+
+<h3>
+<%= weather || "--" %>
+</h3>
+
+
+
+<p>
+
+Max:
+<%= Math.round(todayMax) %>°
+
+Min:
+<%= Math.round(todayMin) %>°
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<!-- WEATHER DETAILS -->
+
+
+<div class="info">
+
+
+<div class="card">
+
+<h3>
+💧 Humidity
+</h3>
+
+<p>
+<%= humidity || "--" %>%
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+🌬 Wind
+</h3>
+
+<p>
+<%= windSpeed || "--" %> km/h
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+🌧 Rain
+</h3>
+
+<p>
+<%= rain || "--" %>
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+🌫 AQI
+</h3>
+
+<p>
+<%= aqi || "--" %>
+</p>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- HOURLY FORECAST -->
+
+
+<h2 class="section-title">
+Today
+</h2>
+
+
+
+<div class="hourly">
+
+
+<% if(forecast){ %>
+
+
+<% forecast.slice(0,8).forEach(item=>{ %>
+
+
+<div class="hour-card">
+
+
+<p>
+
+<%= item.dt_txt.split(" ")[1].slice(0,5) %>
+
+</p>
+
+
+
+<img
+src="https://openweathermap.org/img/wn/<%= item.weather[0].icon %>@2x.png"
+>
+
+
+
+<h3>
+
+<%= Math.round(item.main.temp) %>°
+
+</h3>
+
+
+
+</div>
+
+
+<% }) %>
+
+
+<% } %>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- NEXT 5 DAYS -->
+
+<h2 class="section-title">
+    Next 5 Days
+</h2>
+
+<div class="days">
+
+<% if (dailyForecast) { %>
+
+    <% dailyForecast.slice(0,5).forEach(day => { %>
+
+        <div class="day-card">
+
+            <h3>
+                <%= new Date(day.date).toLocaleDateString("en-US", {
+                    weekday: "short"
+                }) %>
+            </h3>
+
+            <img
+                src="https://openweathermap.org/img/wn/<%= day.icon %>@2x.png"
+            >
+
+            <p>
+                <%= Math.round(day.max) %>°
+                /
+                <%= Math.round(day.min) %>°
+            </p>
+
+        </div>
+
+    <% }) %>
+
+<% } %>
+
+</div>
+
+
+<!-- AI ASSISTANT -->
+
+<button class="ai-assistant-btn" onclick="openAIChat()">
+    🤖
+</button>
+
+
+<!-- AI CHAT BOX -->
+
+<div class="ai-chat-box" id="aiChatBox">
+
+    <div class="ai-chat-header">
+
+        <h3>🤖 Weather AI</h3>
+
+        <button onclick="closeAIChat()">×</button>
+
+    </div>
+
+
+    <!-- MESSAGES -->
+<div class="ai-chat-body" id="aiChatBody">
+
+    <!-- AI MESSAGE -->
+
+    <div class="message-row ai-row">
+
+        <div class="bot-avatar">
+            🤖
+        </div>
+
+        <div class="ai-message">
+            Hi 👋
+            <br>
+            I'm your weather assistant.
+            <br>
+            Ask me anything about the weather.
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- INPUT -->
+
+    <div class="ai-chat-input">
+
+        <input
+            type="text"
+            id="aiInput"
+            placeholder="Ask about weather..."
+        >
+
+        <button onclick="sendAIMessage()">
+            ➤
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function openAIChat() {
+
+    document
+        .getElementById("aiChatBox")
+        .classList.add("active");
+
+}
+
+
+function closeAIChat() {
+
+    document
+        .getElementById("aiChatBox")
+        .classList.remove("active");
+
+}
+
+
+
+
+async function sendAIMessage() {
+
+    const input = document.getElementById("aiInput");
+
+    const chatBody = document.getElementById("aiChatBody");
+
+    const message = input.value.trim();
+
+
+    // Don't send empty message
+
+    if (!message) {
+        return;
+    }
+
+
+    // Show user message
+
+    chatBody.innerHTML += `
+        <div class="message-row user-row">
+
+            <div class="user-message">
+                ${message}
+            </div>
+
+        </div>
+    `;
+
+
+    // Clear input
+
+    input.value = "";
+
+
+    // Show loading
+
+    chatBody.innerHTML += `
+        <div class="message-row ai-row" id="loadingMessage">
+
+            <div class="bot-avatar">
+                🤖
+            </div>
+
+            <div class="ai-message">
+                🤔 Thinking...
+            </div>
+
+        </div>
+    `;
+
+
+    // Scroll to bottom
+
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+
+    try {
+
+        const response = await fetch("/visit/ai/weather", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+body: JSON.stringify({
+    message: message,
+
+    weather: {
+        city: "<%= city %>",
+        temperature: "<%= temperature %>",
+        weather: "<%= weather %>",
+        humidity: "<%= humidity %>",
+        rain: "<%= rain %>",
+        windSpeed: "<%= windSpeed %>"
+    }
+})
+
+        });
+
+
+        // Get JSON response
+
+        const data = await response.json();
+
+
+        // Remove loading
+
+        const loading =
+            document.getElementById("loadingMessage");
+
+        if (loading) {
+            loading.remove();
+        }
+
+
+        // If backend returns an error
+
+        if (!response.ok) {
+
+            chatBody.innerHTML += `
+                <div class="message-row ai-row">
+
+                    <div class="bot-avatar">
+                        🤖
+                    </div>
+
+                    <div class="ai-message">
+                        ${data.reply || "❌ Something went wrong."}
+                    </div>
+
+                </div>
+            `;
+
+            return;
+        }
+
+
+        // Show AI response
+
+        chatBody.innerHTML += `
+            <div class="message-row ai-row">
+
+                <div class="bot-avatar">
+                    🤖
+                </div>
+
+                <div class="ai-message">
+                    ${data.reply}
+                </div>
+
+            </div>
+        `;
+
+
+        // Scroll down
+
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+
+    } catch (error) {
+
+        console.error("Frontend AI ERROR:", error);
+
+
+        const loading =
+            document.getElementById("loadingMessage");
+
+
+        if (loading) {
+            loading.remove();
+        }
+
+
+        chatBody.innerHTML += `
+            <div class="message-row ai-row">
+
+                <div class="bot-avatar">
+                    🤖
+                </div>
+
+                <div class="ai-message">
+                    ❌ Unable to connect to AI server.
+                </div>
+
+            </div>
+        `;
+
+    }
+
+}
+
+
+</script>
+
+</body>
+
+</html>

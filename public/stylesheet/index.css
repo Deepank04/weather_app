@@ -1,0 +1,867 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+
+body{
+
+    background:#0f172a;
+    color:white;
+
+    display:flex;
+    justify-content:center;
+
+    min-height:100vh;
+
+}
+
+
+
+.phone{
+
+    width:100%;
+    max-width:430px;
+
+    min-height:100vh;
+
+    background:#111827;
+
+    padding-bottom:30px;
+
+    overflow:hidden;
+
+}
+
+
+
+
+
+/* HEADER */
+
+.header{
+
+    height:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.header h2{
+
+    font-size:25px;
+    font-weight:700;
+
+}
+
+
+
+
+/* SEARCH */
+
+
+.search-box{
+
+    display:flex;
+
+    gap:10px;
+
+    padding:0 20px;
+
+}
+
+
+
+.search-box input{
+
+    flex:1;
+
+    height:45px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:25px;
+
+    background:#1f2937;
+
+    color:white;
+
+    padding:0 18px;
+
+    font-size:15px;
+
+}
+
+
+
+.search-box input::placeholder{
+
+    color:#9ca3af;
+
+}
+
+
+
+.search-box button{
+
+    width:45px;
+
+    height:45px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#facc15;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+}
+
+
+
+
+
+
+/* LOCATION */
+
+
+.location{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    font-size:22px;
+
+}
+
+
+
+.date{
+
+    text-align:center;
+
+    color:#9ca3af;
+
+    margin-top:8px;
+
+}
+
+
+
+
+
+
+
+/* CURRENT WEATHER CARD */
+
+
+.weather-card{
+
+    width:90%;
+
+    margin:25px auto;
+
+    padding:25px 20px;
+
+    text-align:center;
+
+
+    background:linear-gradient(
+        180deg,
+        #263449,
+        #172033
+    );
+
+
+    border-radius:30px;
+
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.35);
+
+}
+
+
+
+
+.weather-card img{
+
+    width:120px;
+
+}
+
+
+
+.temp{
+
+    font-size:75px;
+
+    font-weight:700;
+
+    line-height:1;
+
+    margin:10px 0;
+
+}
+
+
+
+.weather-card h3{
+
+    font-size:24px;
+
+    margin-bottom:12px;
+
+}
+
+
+
+.weather-card p{
+
+    color:#cbd5e1;
+
+    font-size:16px;
+
+}
+
+
+
+
+
+
+
+/* INFO CARDS */
+
+
+.info{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+    padding:0 20px;
+
+}
+
+
+
+.card{
+
+    background:#1f2937;
+
+    border-radius:20px;
+
+    padding:18px;
+
+    text-align:center;
+
+}
+
+
+
+.card h3{
+
+    font-size:15px;
+
+    color:#cbd5e1;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.card p{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+
+
+/* SECTION TITLE */
+
+
+.section-title{
+
+    font-size:22px;
+
+    margin:30px 20px 15px;
+
+}
+
+
+
+
+
+
+
+/* HOURLY */
+
+
+.hourly{
+
+    display:flex;
+
+    gap:15px;
+
+    overflow-x:auto;
+
+    padding:0 20px;
+
+}
+
+
+
+.hourly::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+
+
+.hour-card{
+
+
+    min-width:90px;
+
+    background:#1f2937;
+
+    border-radius:22px;
+
+    padding:15px;
+
+    text-align:center;
+
+}
+
+
+
+.hour-card p{
+
+    font-size:14px;
+
+    color:#cbd5e1;
+
+}
+
+
+
+.hour-card img{
+
+    width:45px;
+
+    margin:8px 0;
+
+}
+
+
+
+.hour-card h3{
+
+    font-size:22px;
+
+}
+
+
+
+
+
+
+
+/* NEXT 5 DAYS */
+
+
+.days{
+
+    padding:0 20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+
+.day-card{
+
+    background:#1f2937;
+
+    border-radius:22px;
+
+    padding:15px 20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+
+
+.day-card h3{
+
+    width:60px;
+
+    font-size:18px;
+
+}
+
+
+
+.day-card img{
+
+    width:55px;
+
+}
+
+
+
+.day-card p{
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+/* ================================= */
+/* AI ASSISTANT */
+/* ================================= */
+
+
+/* ================================= */
+/* AI FLOATING BUTTON */
+/* ================================= */
+
+.ai-assistant-btn {
+
+    position: fixed;
+
+    /* Position relative to phone screen */
+    right: calc((100vw - 430px) / 2 + 20px);
+
+    bottom: 20px;
+
+    width: 55px;
+    height: 55px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #4f46e5;
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    z-index: 1000;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.4);
+
+}
+
+
+/* ================================= */
+/* AI CHAT BOX */
+/* ================================= */
+
+.ai-chat-box {
+
+    position: fixed;
+
+    right: calc((100vw - 430px) / 2 + 15px);
+
+    bottom: 85px;
+
+    width: 400px;
+
+    max-width: calc(100vw - 30px);
+
+    height: 420px;
+
+    background: #111827;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    display: none;
+
+    flex-direction: column;
+
+    z-index: 999;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.5);
+
+}
+
+
+/* SHOW CHAT */
+
+.ai-chat-box.active {
+
+    display: flex;
+
+}
+
+
+/* ================================= */
+/* AI HEADER */
+/* ================================= */
+
+.ai-chat-header {
+
+    height: 55px;
+
+    padding: 0 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: #1f2937;
+
+    flex-shrink: 0;
+
+}
+
+
+.ai-chat-header h3 {
+
+    margin: 0;
+
+    font-size: 17px;
+
+}
+
+
+.ai-chat-header button {
+
+    width: 35px;
+
+    height: 35px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+}
+
+
+/* ================================= */
+/* CHAT BODY */
+/* ================================= */
+
+.ai-chat-body {
+
+    flex: 1;
+
+    padding: 15px;
+
+    overflow-y: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+/* ================================= */
+/* MESSAGE ROW */
+/* ================================= */
+
+.message-row {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 8px;
+
+    width: 100%;
+
+}
+
+
+/* ================================= */
+/* BOT ROW */
+/* ================================= */
+
+.ai-row {
+
+    justify-content: flex-start;
+
+}
+
+
+/* ================================= */
+/* BOT AVATAR */
+/* ================================= */
+
+.bot-avatar {
+
+    width: 32px;
+
+    height: 32px;
+
+    min-width: 32px;
+
+    min-height: 32px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #4f46e5;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 17px;
+
+}
+
+
+/* ================================= */
+/* AI MESSAGE */
+/* ================================= */
+
+.ai-message {
+
+    background: #1f2937;
+
+    color: #e5e7eb;
+
+    padding: 10px 14px;
+
+    border-radius: 15px 15px 15px 4px;
+
+    max-width: 70%;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+}
+
+
+/* ================================= */
+/* USER MESSAGE */
+/* ================================= */
+
+.user-message {
+
+    align-self: flex-end;
+
+    background: #4f46e5;
+
+    color: white;
+
+    padding: 10px 14px;
+
+    border-radius: 15px 15px 4px 15px;
+
+    max-width: 70%;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    word-wrap: break-word;
+
+}
+
+
+/* ================================= */
+/* CHAT INPUT */
+/* ================================= */
+
+.ai-chat-input {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px;
+
+    background: #1f2937;
+
+    flex-shrink: 0;
+
+}
+
+
+/* INPUT */
+
+.ai-chat-input input {
+
+    flex: 1;
+
+    height: 40px;
+
+    border: none;
+
+    outline: none;
+
+    border-radius: 20px;
+
+    padding: 0 15px;
+
+    background: #111827;
+
+    color: white;
+
+    font-size: 14px;
+
+}
+
+
+.ai-chat-input input::placeholder {
+
+    color: #9ca3af;
+
+}
+
+
+/* SEND BUTTON */
+
+.ai-chat-input button {
+
+    width: 40px;
+
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #4f46e5;
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+}
+
+
+/* ================================= */
+/* MOBILE */
+/* ================================= */
+
+@media (max-width: 430px) {
+
+    .ai-assistant-btn {
+
+        right: 20px;
+
+        bottom: 20px;
+
+    }
+
+
+    .ai-chat-box {
+
+        right: 15px;
+
+        bottom: 85px;
+
+        width: calc(100vw - 30px);
+
+    }
+
+}
+
+
+.visitor-count-card {
+    margin: 15px 20px;
+    padding: 12px 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+}
+
+.visitor-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+
+    font-size: 20px;
+}
+
+.visitor-info p {
+    margin: 0;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.visitor-info h2 {
+    margin: 2px 0 0;
+    font-size: 20px;
+}
+
+
+
+
