@@ -416,7 +416,7 @@ route.post(
 // ========================================
 
 route.post(
-    "/ai/weather",
+    "/weather",
     async (req, res) => {
 
         try {
