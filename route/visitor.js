@@ -129,7 +129,7 @@ async function trackVisitor(req, res) {
 // GET /visit/weather
 // ========================================
 
-route.get("/weather", async (req, res) => {
+route.get("/", async (req, res) => {
 
     try {
 

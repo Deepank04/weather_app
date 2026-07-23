@@ -15,23 +15,15 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,'public')));
 
-app.get('/',(req,res)=>{
-  res.render("test");
-})
+
 
 const cookieParser = require('cookie-parser');
 
 app.use(cookieParser());
 
 const visitorroute = require('./route/visitor');
-const wheatherroute = require('./route/wheather');
 
-app.use('/visit',visitorroute);
-app.use('/wheather',wheatherroute);
-
-
-
-
+app.use('/',visitorroute);
 
 
 const getWeather = require("./utensil/wheatherApi");
