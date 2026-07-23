@@ -290,10 +290,9 @@ route.post(
 
             if (!data) {
 
-                return res.send(
-                    "City Not Found"
-                );
+            req.flash("error", "City not found");
 
+            return res.redirect("/");
             }
 
 
@@ -395,14 +394,7 @@ route.post(
             );
 
 
-            res.status(500).json({
-
-                success: false,
-
-                message:
-                    "Something went wrong"
-
-            });
+            res.flash("error","something went wrong");
 
         }
 

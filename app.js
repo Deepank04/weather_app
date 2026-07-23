@@ -20,6 +20,46 @@ app.use(express.static(path.join(__dirname,'public')));
 const cookieParser = require('cookie-parser');
 
 app.use(cookieParser());
+const flash = require("connect-flash");
+const session = require("express-session");
+
+// ===============================
+// SESSION
+// ===============================
+
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 24 * 365
+        }
+    })
+);
+
+
+// ===============================
+// FLASH
+// ===============================
+
+app.use(flash());
+
+
+// ===============================
+// FLASH VARIABLES FOR EJS
+// ===============================
+
+app.use((req, res, next) => {
+
+    res.locals.success = req.flash("success");
+
+    res.locals.error = req.flash("error");
+
+    next();
+
+});
+
 
 const visitorroute = require('./route/visitor');
 

@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="/stylesheet/notification.css">
+
+<div class="toast-wrapper">
+
+    <% if (success && success.length > 0) { %>
+
+        <div class="toast toast-success">
+
+            <div class="toast-icon">
+                ✓
+            </div>
+
+            <div class="toast-content">
+                <strong>Success</strong>
+                <span><%= success[0] %></span>
+            </div>
+
+            <button
+                class="toast-close"
+                onclick="closeToast(this)"
+            >
+                ×
+            </button>
+
+        </div>
+
+    <% } %>
+
+
+    <% if (error && error.length > 0) { %>
+
+        <div class="toast toast-error">
+
+            <div class="toast-icon">
+                !
+            </div>
+
+            <div class="toast-content">
+                <strong>Error</strong>
+                <span><%= error[0] %></span>
+            </div>
+
+            <button
+                class="toast-close"
+                onclick="closeToast(this)"
+            >
+                ×
+            </button>
+
+        </div>
+
+    <% } %>
+
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const toast = document.querySelector(".toast");
+
+    if (!toast) return;
+
+    setTimeout(() => {
+
+        toast.classList.add("hide");
+
+        setTimeout(() => {
+
+            toast.remove();
+
+        }, 400);
+
+    }, 3000);
+
+});
+
+
+function closeToast(button) {
+
+    const toast =
+        button.closest(".toast");
+
+    if (!toast) return;
+
+    toast.classList.add("hide");
+
+    setTimeout(() => {
+
+        toast.remove();
+
+    }, 400);
+
+}
+
+</script>
